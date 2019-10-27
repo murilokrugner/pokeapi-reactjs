@@ -25,9 +25,18 @@ export const Content = styled.div`
       border-right: 1px solid #eee;
     }
 
-    strong {
-      font-size: 30px;
-      color: #fff;
+    ul {
+      display: flex;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: #667580;
+      font-weight: bold;
+      margin-left: 30px;
     }
   }
 
