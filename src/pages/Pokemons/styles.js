@@ -32,15 +32,11 @@ export const Box = styled.div`
 
 export const ListIndex = styled.div`
   display: flex;
-
   ul {
     margin: 20px;
-
-
     li {
       display: flex;
       justify-content: center;
-
       align-items: center;
       width: 70px;
       height: 62px;
@@ -54,10 +50,8 @@ export const ListIndex = styled.div`
 
 export const ListName = styled.div`
   display: flex;
-
   ul {
     margin: 20px;
-
     li {
       display: flex;
       justify-content: center;
@@ -74,10 +68,8 @@ export const ListName = styled.div`
 
 export const ListImage = styled.div`
   display: flex;
-
   ul {
     margin: 20px;
-
     li {
       display: flex;
       justify-content: center;
@@ -86,7 +78,6 @@ export const ListImage = styled.div`
       width: 70px;
       height: 62px;
     }
-
     img {
       height: 100px;
       width: 400px;
@@ -99,8 +90,6 @@ export const Button = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 50px;
-
-
   button {
     margin-top: 50px;
     margin-right: 50px;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 60px;
+
 `;
 
 
@@ -11,14 +11,14 @@ export const Search = styled.div`
   justify-content: center;
 
   input {
-    width: 220px;
+    max-width: 220px;
     border: 1px solid #e6ecf0;
     height: 35px;
     padding: 0 30px 0 12px;
     border-radius: 16px;
     color: #667581;
     font-size: 12px;
-    margin-right: 250px;
+    margin-right: 100px;
   }
 
   button {
@@ -44,10 +44,11 @@ export const Box = styled.div`
 
 export const BoxItem = styled.div`
   display: flex;
-  justify-content: center;
-  margin: 50px;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
   width: 600px;
-  height: 500px;
+  height: 600px;
   border-radius: 8px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: rgba(10,23,55,0.9);
@@ -56,24 +57,47 @@ export const BoxItem = styled.div`
 `;
 
 export const BoxImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 200px;
+    width: 200px;
+  }
 
 `;
 
 
 export const BoxName = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-right: 50px;
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #DCDCDC;
-  position: relative;
+  align-items: center;
 
   img {
     width: 300px;
 
+  }
+
+  strong {
+    color: #fff;
+    margin: 10px;
+    font-size: 15px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 150px;
+    height: 44px;
+    background: #00BFFF;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px
   }
 
 `;
@@ -95,6 +119,7 @@ export const ProductList = styled.ul`
       align-self: center;
       width: 120px;
     }
+
   }
 
 `;

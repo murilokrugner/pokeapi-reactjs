@@ -95,31 +95,3 @@ export default function Pokemons() {
   );
 }
 
-/*{image.map(image => (
-          <Box>
-            <img src={image.idx} alt="pokemon image" />
-          </Box>
-        ))}
-
-        {name.map(name => (
-          <Box>
-            <strong>{name.name}</strong>
-          </Box>
-        ))}*/
-
-        /*<div className="index">
-
-          </div>
-
-          <div className="image">
-            {image.map(image => (
-              <>
-                <img src={image} />
-                <hr />
-              </>
-            ))}
-          </div>
-
-          <div className="name">
-
-          </div>*/

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
-import { Container, Search, Box, BoxItem, BoxImage } from './styles';
+import { Container, Search, Box, BoxItem, BoxImage, BoxName } from './styles';
 
 import api from '../../services/api';
 
@@ -95,19 +95,31 @@ export default function AddPokemon() {
         </Search>
 
         <Box>
-          <BoxItem>
-            <BoxImage>
-              <img src={image.front_default} alt="pokemon-image" />
-              <strong>{typePokemon}</strong>
-              <strong>{statsPokemonSpeed}</strong>
-              <strong>{statsPokemonSDefense}</strong>
-              <strong>{statsPokemonSAttack}</strong>
-              <strong>{statsPokemonDefense}</strong>
-              <strong>{statsPokemonAttack}</strong>
-              <strong>{statsPokemonHp}</strong>
-            </BoxImage>
-          </BoxItem>
+          {result.name ? (
+            <BoxItem>
+              <BoxImage>
+                <img src={image.front_default} alt="pokemon-image" />
+              </BoxImage>
+                <BoxName>
+                  <strong>Nome: {result.name}</strong>
+                  <strong>Tipo: {typePokemon}</strong>
+                  <strong>Speed: {statsPokemonSpeed}</strong>
+                  <strong>Special Defense: {statsPokemonSDefense}</strong>
+                  <strong>Special Attack: {statsPokemonSAttack}</strong>
+                  <strong>Defense: {statsPokemonDefense}</strong>
+                  <strong>Attack: {statsPokemonAttack}</strong>
+                  <strong>HP: {statsPokemonHp}</strong>
+                  <strong>Abilities: {abilitiesPokemonPrimary}</strong>
+                  <strong>Abilities: {abilitiesPokemonSecond}</strong>
+                  <button type="button">Adicionar Pokémon</button>
+                </BoxName>
+           </BoxItem>
+          ): (
+            <strong>ADD POKEMON</strong>
+          )}
         </Box>
+
     </Container>
   );
 }
+
