@@ -23,8 +23,8 @@ export default createGlobalStyle`
   }
 
   body {
-    /*background: #CD5C5C;*/
-    background-image: url("https://wallpaperaccess.com/full/96968.png");
+    background: #CD5C5C;
+    /*background-image: url("https://wallpaperaccess.com/full/96968.png");*/
     background-repeat: repeat-y;
     -webkit-font-smoothing: antialiased;
   }

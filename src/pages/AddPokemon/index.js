@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
-import { Container, Search, Box, BoxItem, BoxImage, BoxName } from './styles';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import { Container, Search, Status } from './styles';
 
 import api from '../../services/api';
 
@@ -19,8 +20,6 @@ export default function AddPokemon() {
   const [abilitiesPokemonPrimary, setAbilitiesPokemonPrimary] = useState(['']);
   const [abilitiesPokemonSecond, setAbilitiesPokemonSecond] = useState(['']);
   const [abilitiesPokemonThird, setAbilitiesPokemonThird] = useState(['']);
-  const [pokemons, setPokemons] = useState();
-  const [storage, setStorage] = useState();
 
   async function handleSubmit(data) {
     setLoading(true);
@@ -39,45 +38,11 @@ export default function AddPokemon() {
     setStatsPokemonHp(response.data.stats[5].base_stat);
     setAbilitiesPokemonPrimary(response.data.abilities[0].ability.name);
     setAbilitiesPokemonSecond(response.data.abilities[1].ability.name);
-    //setAbilitiesPokemonThird(response.data.abilities[2].ability.name);
-  }
-
-  function handleStorage() {
-
-    const poke = localStorage.getItem('pokemons');
-
-    const json = JSON.parse(poke);
-
-    setPokemons(json);
-
-    const data =
-      {
-        imagem: image.front_default,
-        name: result.name,
-        type: typePokemon,
-        speed: statsPokemonSpeed,
-        sdefense: statsPokemonSDefense,
-        sattack: statsPokemonSAttack,
-        defense: statsPokemonDefense,
-        attack: statsPokemonAttack,
-        hp: statsPokemonHp,
-        abilitiesp: abilitiesPokemonPrimary,
-        abilitiess: abilitiesPokemonSecond,
-      }
-
-
-      const d = [json, data];
-
-      setStorage(d);
-
-    //localStorage.removeItem('pokemons');
-
   }
 
   useEffect(() => {
-    localStorage.removeItem('pokemons')
-    localStorage.setItem('pokemons', JSON.stringify(storage));
-  }, [storage]);
+
+  }, []);
 
   return (
     <Container>
@@ -94,30 +59,22 @@ export default function AddPokemon() {
         </Form>
         </Search>
 
-        <Box>
           {result.name ? (
-            <BoxItem>
-              <BoxImage>
-                <img src={image.front_default} alt="pokemon-image" />
-              </BoxImage>
-                <BoxName>
-                  <strong>Nome: {result.name}</strong>
-                  <strong>Tipo: {typePokemon}</strong>
-                  <strong>Speed: {statsPokemonSpeed}</strong>
-                  <strong>Special Defense: {statsPokemonSDefense}</strong>
-                  <strong>Special Attack: {statsPokemonSAttack}</strong>
-                  <strong>Defense: {statsPokemonDefense}</strong>
-                  <strong>Attack: {statsPokemonAttack}</strong>
-                  <strong>HP: {statsPokemonHp}</strong>
-                  <strong>Abilities: {abilitiesPokemonPrimary}</strong>
-                  <strong>Abilities: {abilitiesPokemonSecond}</strong>
-                  <button type="button">Adicionar Pokémon</button>
-                </BoxName>
-           </BoxItem>
+
+              <Status>
+                <ul>
+                  <li><ProgressBar now={statsPokemonSpeed} label={`${statsPokemonSpeed}`} animated now={statsPokemonSpeed} /></li>
+                  <li><ProgressBar now={statsPokemonSDefense} label={`${statsPokemonSDefense}`} animated now={statsPokemonSDefense} /></li>
+                  <li><ProgressBar now={statsPokemonSAttack} label={`${statsPokemonSAttack}`} animated now={statsPokemonSAttack} /></li>
+                  <li><ProgressBar now={statsPokemonDefense} label={`${statsPokemonDefense}`} animated now={statsPokemonDefense} /></li>
+                  <li><ProgressBar now={statsPokemonAttack} label={`${statsPokemonAttack}`} animated now={statsPokemonAttack} /></li>
+                  <li><ProgressBar now={statsPokemonHp} label={`${statsPokemonHp}`} animated now={statsPokemonHp} /></li>
+                </ul>
+              </Status>
           ): (
-            <strong>ADD POKEMON</strong>
+            <strong>PESQUISE</strong>
           )}
-        </Box>
+
 
     </Container>
   );

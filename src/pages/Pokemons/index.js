@@ -12,6 +12,7 @@ export default function Pokemons() {
   const [page, setPage] = useState(0);
 
   async function loadPokemon() {
+    setLoading(true);
     const response = await api.get(`pokemon/?offset=${page}&limit=20`);
 
     setName(response.data.results);
@@ -21,10 +22,11 @@ export default function Pokemons() {
     const pokemonIndex = result.split('/')[result.split('/').length - 2];
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
     const imageUrlObj = { idx: imageUrl };
-    return imageUrl;
+    return imageUrlObj;
     });
 
     setImage(urls);
+    setLoading(false);
 
   };
 
@@ -79,7 +81,7 @@ export default function Pokemons() {
           <ul>
             {image.map(image => (
               <li>
-                <img src={image} alt="pokemon image" />
+                <img src={image.idx} alt="pokemon image" />
               </li>
             ))}
           </ul>
