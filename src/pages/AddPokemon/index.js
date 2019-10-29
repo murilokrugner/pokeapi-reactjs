@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
-import { Container, Search, Box, BoxImage } from './styles';
+import { Container, Search, Box, BoxItem, BoxImage } from './styles';
 
 import api from '../../services/api';
-import { stringify } from 'querystring';
 
 export default function AddPokemon() {
   const [loading, setLoading] = useState(false);
@@ -96,11 +95,19 @@ export default function AddPokemon() {
         </Search>
 
         <Box>
-          <BoxImage>
-            <img src={image.front_default} alt="pokemon-image" />
-          </BoxImage>
+          <BoxItem>
+            <BoxImage>
+              <img src={image.front_default} alt="pokemon-image" />
+              <strong>{typePokemon}</strong>
+              <strong>{statsPokemonSpeed}</strong>
+              <strong>{statsPokemonSDefense}</strong>
+              <strong>{statsPokemonSAttack}</strong>
+              <strong>{statsPokemonDefense}</strong>
+              <strong>{statsPokemonAttack}</strong>
+              <strong>{statsPokemonHp}</strong>
+            </BoxImage>
+          </BoxItem>
         </Box>
     </Container>
   );
 }
-

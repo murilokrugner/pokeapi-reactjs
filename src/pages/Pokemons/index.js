@@ -1,47 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../../components/Header';
+import React, {useState, useEffect } from 'react';
 import HashLoader from "react-spinners/HashLoader";
 import { Container, Loading, Content, Box, ListIndex, ListName, ListImage, Button } from './styles';
+import Header from './../../components/Header';
 
 import api from '../../services/api';
 
-export default function Dashboard() {
+export default function Pokemons() {
   const [loading, setLoading] = useState(false);
-  const [list, setList] = useState(['']);
-  const [url, setUrl] = useState(['']);
-  const [index, setIndex] = useState(['']);
+  const [name, setName] = useState([]);
+  const [image, setImage] = useState([]);
   const [page, setPage] = useState(0);
 
   async function loadPokemon() {
-    setLoading(true);
     const response = await api.get(`pokemon/?offset=${page}&limit=20`);
 
-    const data = response.data.results.map(item => {
-      const urls = item.url;
-      const pokemonIndex = urls.split('/')[urls.split('/').length - 2];
-      const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
-      const arr = { idx: imageUrl };
-      return arr;
+    setName(response.data.results);
+
+    const urls = response.data.results.map(urls => {
+    const result = urls.url;
+    const pokemonIndex = result.split('/')[result.split('/').length - 2];
+    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
+    const imageUrlObj = { idx: imageUrl };
+    return imageUrl;
     });
 
-      const pokeIndex = response.data.results.map(item => {
-      const urls = item.url;
-      const pokemonIndex = urls.split('/')[urls.split('/').length - 2];
+    setImage(urls);
 
-      return pokemonIndex;
-    });
-
-    setList(response.data.results);
-    setUrl(data);
-    setIndex(pokeIndex);
-
-    setLoading(false);
-
-  }
-
-  useEffect(() => {
-    loadPokemon();
-  }, [page]);
+  };
 
   function nextPage() {
     setPage(page + 20)
@@ -55,11 +40,18 @@ export default function Dashboard() {
     }
   }
 
-  console.log(page);
+  useEffect(() => {
+    loadPokemon();
+  }, [page]);
+
 
   return (
     <Container>
       <Header />
+      <Button>
+        <button type="button" onClick={backPage}>Voltar Página</button>
+        <button type="button" onClick={nextPage}>Avançar Página</button>
+      </Button>
         <Content>
       {loading ? (
         <Loading>
@@ -67,66 +59,67 @@ export default function Dashboard() {
         </Loading>
       ): (
           <Box>
+
             <ListIndex>
               <ul>
-            {index.map(i => (
-              <li>{i}</li>
+            {name.map(name => (
+              <li>{name.url.split('/')[name.url.split('/').length - 2]}</li>
             ))}
           </ul>
         </ListIndex>
         <ListName>
           <ul>
-            {list.map(i => (
-              <li>{i.name}</li>
+            {name.map(i => (
+              <li>{i.name.toUpperCase()}</li>
             ))}
           </ul>
         </ListName>
 
         <ListImage>
           <ul>
-            {url.map(item => (
+            {image.map(image => (
               <li>
-                <img src={item.idx} />
+                <img src={image} alt="pokemon image" />
               </li>
             ))}
           </ul>
         </ListImage>
-        <Button>
-          <button type="button" onClick={nextPage}>Next</button>
-          <button type="button" onClick={backPage}>Back</button>
-        </Button>
       </Box>
       )}
       </Content>
+      <Button>
+        <button type="button" onClick={backPage}>Voltar Página</button>
+        <button type="button" onClick={nextPage}>Avançar Página</button>
+      </Button>
     </Container>
   );
 }
 
-/*
-{list.map(item => (
-          <li key={item}>
-            <strong>{item.name}</strong>
-          </li>
+/*{image.map(image => (
+          <Box>
+            <img src={image.idx} alt="pokemon image" />
+          </Box>
         ))}
 
-*/
-
-/*<img src={i} alt="pokemon image" />*/
-
-/*<li>
-          <strong>{item.name}</strong>
-          <strong>{i}</strong>
-        </li>*/
-
-/*{list.map(item => (
-          <Pokemons data={item} />
+        {name.map(name => (
+          <Box>
+            <strong>{name.name}</strong>
+          </Box>
         ))}*/
 
-/*//console.log(pokemonIndex);
-    //const obj = {idx: pokemonIndex};
-    //
-    //const objImage = {image: imageUrl};
+        /*<div className="index">
 
+          </div>
 
-    //setIndex(data.obj);
-    //setUrl(data.objImage);*/
+          <div className="image">
+            {image.map(image => (
+              <>
+                <img src={image} />
+                <hr />
+              </>
+            ))}
+          </div>
+
+          <div className="name">
+
+          </div>*/

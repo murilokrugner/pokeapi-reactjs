@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 
@@ -22,7 +23,9 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #fff;
+    /*background: #CD5C5C;*/
+    background-image: url("https://wallpaperaccess.com/full/96968.png");
+    background-repeat: repeat-y;
     -webkit-font-smoothing: antialiased;
   }
 
