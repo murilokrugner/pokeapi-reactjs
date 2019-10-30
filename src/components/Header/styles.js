@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background: #00BFFF;
   padding: 0 30px;
+  width: 2200px;
 `;
 
 export const Content = styled.div`
   height: 100px;
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -27,11 +28,11 @@ export const Content = styled.div`
 
     ul {
       display: flex;
+
       list-style: none;
     }
 
     li {
-      display: flex;
       align-items: center;
       font-size: 13px;
       color: #667580;

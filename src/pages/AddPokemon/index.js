@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import { Container, Search, Status } from './styles';
+import { Container, Search, Status, Box, BoxImage, BoxAbilities } from './styles';
 
 import api from '../../services/api';
 
@@ -60,17 +60,24 @@ export default function AddPokemon() {
         </Search>
 
           {result.name ? (
+              <Box>
+                <BoxImage>
+                  <img src={image.front_default} alt="pokemon-image" />
+                </BoxImage>
+                <Status>
+                  <ul>
+                    <li><ProgressBar now={statsPokemonSpeed} label={`${statsPokemonSpeed}`} animated now={statsPokemonSpeed} /></li>
+                    <li><ProgressBar now={statsPokemonSDefense} label={`${statsPokemonSDefense}`} animated now={statsPokemonSDefense} /></li>
+                    <li><ProgressBar now={statsPokemonSAttack} label={`${statsPokemonSAttack}`} animated now={statsPokemonSAttack} /></li>
+                    <li><ProgressBar now={statsPokemonDefense} label={`${statsPokemonDefense}`} animated now={statsPokemonDefense} /></li>
+                    <li><ProgressBar now={statsPokemonAttack} label={`${statsPokemonAttack}`} animated now={statsPokemonAttack} /></li>
+                    <li><ProgressBar now={statsPokemonHp} label={`${statsPokemonHp}`} animated now={statsPokemonHp} /></li>
+                  </ul>
+                </Status>
+                <BoxAbilities>
 
-              <Status>
-                <ul>
-                  <li><ProgressBar now={statsPokemonSpeed} label={`${statsPokemonSpeed}`} animated now={statsPokemonSpeed} /></li>
-                  <li><ProgressBar now={statsPokemonSDefense} label={`${statsPokemonSDefense}`} animated now={statsPokemonSDefense} /></li>
-                  <li><ProgressBar now={statsPokemonSAttack} label={`${statsPokemonSAttack}`} animated now={statsPokemonSAttack} /></li>
-                  <li><ProgressBar now={statsPokemonDefense} label={`${statsPokemonDefense}`} animated now={statsPokemonDefense} /></li>
-                  <li><ProgressBar now={statsPokemonAttack} label={`${statsPokemonAttack}`} animated now={statsPokemonAttack} /></li>
-                  <li><ProgressBar now={statsPokemonHp} label={`${statsPokemonHp}`} animated now={statsPokemonHp} /></li>
-                </ul>
-              </Status>
+                </BoxAbilities>
+              </Box>
           ): (
             <strong>PESQUISE</strong>
           )}
