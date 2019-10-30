@@ -5,6 +5,23 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  button {
+    margin: 30px 0 0 0;
+    height: 35px;
+    width: 90px;
+    background: #228B22;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  span {
+    margin-top: 100px;
+  }
+
 `;
 
 
@@ -44,16 +61,24 @@ export const Box = styled.div`
   border-radius: 8px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
-  margin-top: 50px;
+  margin-top: 40px;
   position: relative;
-  width: 600px;
-  height: 600px;
+  width: 410px;
+  height: 420px;
+`;
+
+export const BoxName = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+
 `;
 
 export const BoxImage = styled.div`
-  width: 300px;
-  height: 300px;
-  margin-top: 20px;
+  height: 10px;
+  margin-top: 50px;
 
   img {
     width: 100px;
@@ -74,9 +99,12 @@ export const Status = styled.div`
     li{
       margin-bottom: 20px;
 
+      strong {
+
+      }
+
     }
   }
 
 `;
 
-export const BoxAbilities = styled.div``;

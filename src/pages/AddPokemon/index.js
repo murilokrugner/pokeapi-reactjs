@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import { Container, Search, Status, Box, BoxImage, BoxAbilities } from './styles';
+import { Container, Search, Status, Box, BoxImage, BoxName } from './styles';
 
 import api from '../../services/api';
+import { toast } from 'react-toastify';
 
 export default function AddPokemon() {
   const [loading, setLoading] = useState(false);
@@ -38,11 +39,21 @@ export default function AddPokemon() {
     setStatsPokemonHp(response.data.stats[5].base_stat);
     setAbilitiesPokemonPrimary(response.data.abilities[0].ability.name);
     setAbilitiesPokemonSecond(response.data.abilities[1].ability.name);
+
+    //console.log(response.request.onerror === 'Network Error');
+
+    if(response.data) {
+      toast.success('ENCONTRADO');
+    }
+  };
+
+  function handleAdd() {
+
   }
 
   useEffect(() => {
 
-  }, []);
+  }, [handleAdd]);
 
   return (
     <Container>
@@ -60,29 +71,36 @@ export default function AddPokemon() {
         </Search>
 
           {result.name ? (
+              <>
+              <BoxImage>
+                <img src={image.front_default} alt="pokemon-image" />
+              </BoxImage>
+              <BoxName>
+                <h5>Nome: {result.name}</h5>
+                <h7>Tipo: {typePokemon}</h7>
+              </BoxName>
               <Box>
-                <BoxImage>
-                  <img src={image.front_default} alt="pokemon-image" />
-                </BoxImage>
                 <Status>
                   <ul>
-                    <li><ProgressBar now={statsPokemonSpeed} label={`${statsPokemonSpeed}`} animated now={statsPokemonSpeed} /></li>
-                    <li><ProgressBar now={statsPokemonSDefense} label={`${statsPokemonSDefense}`} animated now={statsPokemonSDefense} /></li>
-                    <li><ProgressBar now={statsPokemonSAttack} label={`${statsPokemonSAttack}`} animated now={statsPokemonSAttack} /></li>
-                    <li><ProgressBar now={statsPokemonDefense} label={`${statsPokemonDefense}`} animated now={statsPokemonDefense} /></li>
-                    <li><ProgressBar now={statsPokemonAttack} label={`${statsPokemonAttack}`} animated now={statsPokemonAttack} /></li>
-                    <li><ProgressBar now={statsPokemonHp} label={`${statsPokemonHp}`} animated now={statsPokemonHp} /></li>
+                    <li>Speed<ProgressBar now={statsPokemonSpeed} label={`${statsPokemonSpeed}`} animated now={statsPokemonSpeed} /></li>
+                    <li>Special Defense<ProgressBar now={statsPokemonSDefense} label={`${statsPokemonSDefense}`} animated now={statsPokemonSDefense} /></li>
+                    <li>Special Attack<ProgressBar now={statsPokemonSAttack} label={`${statsPokemonSAttack}`} animated now={statsPokemonSAttack} /></li>
+                    <li>Defense<ProgressBar now={statsPokemonDefense} label={`${statsPokemonDefense}`} animated now={statsPokemonDefense} /></li>
+                    <li>Attack<ProgressBar now={statsPokemonAttack} label={`${statsPokemonAttack}`} animated now={statsPokemonAttack} /></li>
+                    <li>HP<ProgressBar now={statsPokemonHp} label={`${statsPokemonHp}`} animated now={statsPokemonHp} /></li>
+                    <li>
+                      Habilidades:
+                      <strong> {abilitiesPokemonPrimary}, </strong>
+                      <strong>{abilitiesPokemonSecond}</strong>
+                    </li>
                   </ul>
                 </Status>
-                <BoxAbilities>
-
-                </BoxAbilities>
               </Box>
+              <button type="button" onClick={() => handleAdd()}>Adicionar</button>
+              </>
           ): (
-            <strong>PESQUISE</strong>
+            <span>PESQUISE UM POKÉMON :)</span>
           )}
-
-
     </Container>
   );
 }
