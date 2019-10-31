@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background: #00BFFF;
   padding: 0 30px;
-  width: 2200px;
+  width: 1500px;
+  max-width: 1500px;
 `;
 
 export const Content = styled.div`
-  height: 100px;
+  height: 50px;
   max-width: 950px;
   margin: 0 auto;
   display: flex;
@@ -17,6 +18,13 @@ export const Content = styled.div`
   nav {
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    strong {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     img {
       height: 60px;
@@ -28,12 +36,16 @@ export const Content = styled.div`
 
     ul {
       display: flex;
+      align-items: center;
+      justify-content: center;
 
       list-style: none;
     }
 
     li {
+      display: flex;
       align-items: center;
+      justify-content: center;
       font-size: 13px;
       color: #667580;
       font-weight: bold;

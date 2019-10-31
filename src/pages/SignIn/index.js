@@ -11,6 +11,7 @@ export default function SignIn() {
 
   function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
+
   }
 
   return (

@@ -3,7 +3,6 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import history from '../../../services/history';
-import api from '../../../services/api';
 
 import { signInSuccess, signFailure } from './actions';
 
@@ -11,18 +10,18 @@ export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
 
-    const response = yield call(api.get, 'users', {
-      email,
-      password,
-    });
+    if (email === "pokeapi@mail.com") {
+      history.push('/pokemons');
+      return;
+    }
 
-    //const { email, password } = response.data;
+    if (email !== "pokeapi@mail.com") {
+      toast.error('Falha na autenticação, verifique seus dados');
+      return;
+    }
 
-    console.tron.log(email, password);
+    yield put(signInSuccess(email, password));
 
-    yield put(signInSuccess(response.data));
-
-    history.push('/dashboard');
   } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados');
     yield put(signFailure());
@@ -34,7 +33,6 @@ export function signOut() {
 }
 
 export default all([
-  //takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_OUT', signOut),
 ]);
