@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import { Container, Button, Search, Status, Box, BoxImage, BoxName, BoxAbilities } from './styles';
+import { Container, Button, Search, Status, Box, BoxImage, BoxName } from './styles';
 
 import api from '../../services/api';
 import { toast } from 'react-toastify';
@@ -63,7 +63,7 @@ export default function MyPokemons() {
               name="name"
               id="name"
               placeholder="Nome do Pokemon"
-          />
+              />
           <button type="submit">Pesquisar</button>
         </Form>
         </Search>
@@ -92,10 +92,14 @@ export default function MyPokemons() {
                       <strong>{abilitiesPokemonSecond}</strong>
                     </li>
                   </ul>
+                  <Form >
+                    <Input multiline name="description" placeholder="descrição..." />
+                  </Form>
                 </Status>
               </Box>
+
               <Button>
-                <button type="button">Adicionar</button>
+                <button type="button">Editar</button>
                 <button type="button" >Excluir</button>
               </Button>
 

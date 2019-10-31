@@ -90,8 +90,8 @@ export const Box = styled.div`
   background-color: #ffffff;
   margin-top: 40px;
   position: relative;
-  width: 410px;
-  height: 420px;
+  width: 500px;
+  height: 500px;
 `;
 
 export const BoxName = styled.div`
@@ -104,12 +104,13 @@ export const BoxName = styled.div`
 `;
 
 export const BoxImage = styled.div`
-  height: 10px;
   margin-top: 50px;
+  width: 200px;
+  height: 100px;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
   }
 `;
 
@@ -123,6 +124,7 @@ export const Status = styled.div`
   ul {
     width: 350px;
 
+
     li{
       margin-bottom: 20px;
 
@@ -133,6 +135,11 @@ export const Status = styled.div`
     }
   }
 
+  textarea {
+    width: 350px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
 `;
 
-export const BoxAbilities = styled.div``;

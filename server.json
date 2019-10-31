@@ -5,5 +5,10 @@
       "email": "pokeapi@mail.com",
       "password": "123456"
     }
+  ],
+  "pokemon": [
+    {
+      "name": "teste"
+    }
   ]
 }

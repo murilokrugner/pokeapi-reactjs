@@ -74,15 +74,19 @@ export const BoxName = styled.div`
   align-items: center;
   margin-top: 80px;
 
+
+
 `;
 
 export const BoxImage = styled.div`
   height: 10px;
   margin-top: 50px;
+  width: 200px;
+  height: 100px;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
   }
 `;
 

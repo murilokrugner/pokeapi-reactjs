@@ -44,7 +44,7 @@ export default function Pokemons() {
 
   useEffect(() => {
     loadPokemon();
-  }, [loadPokemon, page]);
+  }, [page]);
 
 
   return (
