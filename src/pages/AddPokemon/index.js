@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { Form, Input } from '@rocketseat/unform';
+import { useDispatch } from 'react-redux';
+import { request } from '../../store/modules/pokemons/actions';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { Container, Search, Status, Box, BoxImage, BoxName } from './styles';
 
@@ -8,8 +10,10 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 
 export default function AddPokemon() {
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(['']);
+  const [name, setName] = useState(['']);
   const [image, setImage] = useState(['']);
   const [typePokemon, setTypePokemon] = useState(['']);
   const [statsPokemonSpeed, setStatsPokemonSpeed] = useState(['']);
@@ -27,7 +31,7 @@ export default function AddPokemon() {
     const search = data.name;
     const response = await api.get(`pokemon/${search}/`);
     setLoading(false);
-    setResult(response.data);
+    setName(response.data);
     setImage(response.data.sprites);
     setTypePokemon(response.data.types[0].type.name);
 
@@ -51,6 +55,11 @@ export default function AddPokemon() {
 
   }
 
+  function handleAdd() {
+    dispatch(request(name.name, image.front_default));
+
+  }
+
   useEffect(() => {
 
   }, [handleAdd]);
@@ -70,13 +79,13 @@ export default function AddPokemon() {
         </Form>
         </Search>
 
-          {result.name ? (
+          {name.name ? (
               <>
               <BoxImage>
                 <img src={image.front_default} alt="pokemon-image" />
               </BoxImage>
               <BoxName>
-                <h5>Nome: {result.name}</h5>
+                <h5>Nome: {name.name}</h5>
                 <h7>Tipo: {typePokemon}</h7>
               </BoxName>
               <Box>

@@ -1,14 +1,14 @@
-export function request(data) {
+export function request(name, image) {
   return {
     type: '@pokemons/REQUEST',
-    payload: { data },
+    payload: { name, image },
   };
 }
 
-export function requestSuccess(results) {
+export function requestSuccess(name, image) {
   return {
     type: '@pokemons/REQUEST_SUCCESS',
-    payload: { results },
+    payload: { name, image },
   };
 }
 

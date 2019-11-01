@@ -1,7 +1,6 @@
 import produce from 'immer';
 
 const InitialState = {
-  results: null,
   loading: false,
 };
 
@@ -13,7 +12,8 @@ export default function pokemons(state = InitialState, action) {
         break;
       }
       case '@pokemons/REQUEST_SUCCESS': {
-        draft.results = action.payload.pokemons;
+        draft.name = action.payload.name;
+        draft.image = action.payload.image;
         draft.loading = false;
         break;
       }

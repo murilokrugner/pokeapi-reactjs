@@ -1,18 +1,25 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
-import api from '../../../services/api';
+import { toast } from 'react-toastify';
+
+import jsonapi from '../../../services/jsonapi';
 
 import { requestSuccess, requestFailed } from './actions';
 
 export function* request({ payload }) {
   try {
-    function* loadPokemons() {
-      const response = yield call(api.get, 'pokemon/');
+    const { name, image } = payload;
 
-      yield put(requestSuccess(response.data.results));
-    }
+    const response = yield call(jsonapi.post, 'pokemons', {
+      name,
+      image,
+    });
 
-    loadPokemons();
+    console.log(response.data);
+    console.tron.log(response.data);
+
+    yield put(requestSuccess(name, image));
+    toast.success('Pokemon adicionado!');
 
   } catch(err) {
     yield put(requestFailed());
